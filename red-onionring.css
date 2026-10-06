@@ -3,7 +3,8 @@
 // it was originally made by joey + mord of allium (蒜) house, last updated 2020-10-24 */
 
 /* --- red-onionring.js is an onionring.js fork with additional features ------------------------------ //
-// --- https://github.com/cheesepak/red-onionring.js -------------------------------------------------- */
+// --- https://github.com/cheesepak/red-onionring.js -------------------------------------------------- 
+// --- last updated 2026-08-05 ------------------------------------------------------------------------ */
 
 /* === ONIONRING.CSS === */
 /* this file affects the style of the widget. remember to replace all instances of #webringid with whatever value you have for ringID in the onionring-widget.js file. make sure it still has the # at the front, though! probably easiest to use find+replace to do it */
@@ -47,7 +48,7 @@
 }
 
 /* currently sized for 88x31 buttons */
-#index .sites .icon {
+#index .sites .badge {
   background-color: #eeeeee;
   width: 88px;
   height: 31px;

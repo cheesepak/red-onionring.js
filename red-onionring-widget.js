@@ -4,6 +4,7 @@
 
 // --- red-onionring.js is an onionring.js fork with additional features ------------------------------
 // --- https://github.com/cheesepak/red-onionring.js --------------------------------------------------
+// --- last updated 2026-08-05 ------------------------------------------------------------------------
 
 // === ONIONRING-WIDGET ===
 //this file contains the code which builds the widget shown on each page in the ring. ctrl+f 'EDIT THIS' if you're looking to change the actual html of the widget
@@ -12,22 +13,23 @@ var tag = document.getElementById(ringID); //find the widget on the page
 
 thisSite = window.location.href; //get the url of the site we're currently on
 thisIndex = null;
+allSites = Object.keys(sites) //create an array of all site urls
 
-// red-onionring.js: if you've chosen to sort alphabetically, this sorts the sites
+// if you've chosen to sort alphabetically, this sorts the sites
 if(useSort) {
-  sites = sites.sort();
+  allSites = allSites.sort();
 }
 
 // go through the site list to see if this site is on it and find its position
-for (i = 0; i < sites.length; i++) {
-  if (thisSite.startsWith(sites[i])) { //we use startswith so this will match any subdirectory, users can put the widget on multiple pages
+for (i = 0; i < allSites.length; i++) {
+  if (thisSite.startsWith(allSites[i])) { //we use startswith so this will match any subdirectory, users can put the widget on multiple pages
     thisIndex = i;
     break; //when we've found the site, we don't need to search any more, so stop the loop
   }
 }
 
 function randomSite() {
-  otherSites = sites.slice(); //create a copy of the sites list
+  otherSites = allSites.slice(); //create a copy of the sites list
   otherSites.splice(thisIndex, 1); //remove the current site so we don't just land on it again
   randomIndex = Math.floor(Math.random() * otherSites.length);
   location.href = otherSites[randomIndex];
@@ -47,8 +49,8 @@ else {
   //find the 'next' and 'previous' sites in the ring. this code looks complex
   //because it's using a shorthand version of an if-else statement to make sure
   //the first and last sites in the ring join together correctly
-  previousIndex = (thisIndex-1 < 0) ? sites.length-1 : thisIndex-1;
-  nextIndex = (thisIndex+1 >= sites.length) ? 0 : thisIndex+1;
+  previousIndex = (thisIndex-1 < 0) ? allSites.length-1 : thisIndex-1;
+  nextIndex = (thisIndex+1 >= allSites.length) ? 0 : thisIndex+1;
 
   indexText = ""
   //if you've chosen to include an index, this builds the link to that
@@ -62,19 +64,19 @@ else {
     randomText = `<a href='javascript:void(0)' onclick='randomSite()'>random</a> | `;
   }
 
-  if (thisSite.startsWith(sites[i]) == thisSite.startsWith(indexPage)) {
+  if (thisSite.startsWith(allSites[i]) == thisSite.startsWith(indexPage)) {
     // --- red-onionring.js: this is the code that displays the widget if you include it as part of the ring in the sites variable. 
     // EDIT THIS if you want to change the structure
     tag.insertAdjacentHTML('afterbegin', `
       <table>
         <tr>
-          <td class='webring-prev'><a href='${sites[previousIndex]}'>← previous</a></td>
+          <td class='webring-prev'><a href='${allSites[previousIndex]}'>← previous</a></td>
           <td class='webring-info'>This site is the index of the ${ringName} webring</br>
           <span class='webring-links'>
             ${randomText}
             ${indexText}
-            <a href='https://garlic.garden/onionring/'>what is this?</a></span></td>
-          <td class='webring-next'><a href='${sites[nextIndex]}'>next →</a></td>
+            <a href='https://github.com/cheesepak/red-onionring.js'>what is this?</a></span></td>
+          <td class='webring-next'><a href='${allSites[nextIndex]}'>next →</a></td>
         </tr>
       </table>
       `);
@@ -84,13 +86,13 @@ else {
     tag.insertAdjacentHTML('afterbegin', `
     <table>
       <tr>
-        <td class='webring-prev'><a href='${sites[previousIndex]}'>← previous</a></td>
+        <td class='webring-prev'><a href='${allSites[previousIndex]}'>← previous</a></td>
         <td class='webring-info'>This site is part of the ${ringName} webring</br>
         <span class='webring-links'>
           ${randomText}
           ${indexText}
-          <a href='https://garlic.garden/onionring/'>what is this?</a></span></td>
-        <td class='webring-next'><a href='${sites[nextIndex]}'>next →</a></td>
+          <a href='https://github.com/cheesepak/red-onionring.js'>what is this?</a></span></td>
+        <td class='webring-next'><a href='${allSites[nextIndex]}'>next →</a></td>
       </tr>
     </table>
     `);

@@ -4,6 +4,7 @@
 
 // --- red-onionring.js is an onionring.js fork with additional features ------------------------------
 // --- https://github.com/cheesepak/red-onionring.js --------------------------------------------------
+// --- last updated 2026-08-05 ------------------------------------------------------------------------
 
 // === ONIONRING-INDEX ===
 //this file builds the list of sites in the ring for displaying on your index page
@@ -11,56 +12,49 @@
 var tag = document.getElementById('index');
 regex = /^https:\/\/|\/$/g; //strips the https:// and trailing slash off the urls for aesthetic purposes
 
-list = "";
-for (i = 0; i < sites.length; i++) {
-  list += `<li><a href='${sites[i]}'>${sites[i].replace(regex, "")}</a></li>`;
+// if you've chosen to sort alphabetically, this sorts the sites
+if(useSort) {
+  function compare( a, b ) {
+    if ( a.site < b.site ){
+      return -1;
+    }
+    if ( a.site > b.site ){
+      return 1;
+    }
+    return 0;
+  }
+  sites.sort(compare);
 }
 
-if(useRedOnionIndex) {
-  if(useSort) {
-    function compare( a, b ) {
-      if ( a.site < b.site ){
-        return -1;
-      }
-      if ( a.site > b.site ){
-        return 1;
-      }
-      return 0;
-    }
-    sitesR.sort(compare);
-  }
-
+if(useAdvancedIndex) {
   list = "";
-  for (i = 0; i < sites.length; i++) {
+  for (const [url, data] of Object.entries(sites)) {
     //this is the code that displays the index widget - EDIT THIS if you want to change the structure
     list += `
       <div class="sites">
-        <div class="icon"><img src="${sitesR[i].icon}"></div>
-        <div class="title">${sitesR[i].title}</div>
-        <div class="description">${sitesR[i].description}</div>
-        <div class="site"><a href='${sitesR[i].site}'>${sitesR[i].site.replace(regex, "")}</a></div>
-        <div class="owner">${sitesR[i].owner}</div>
+        <div class="badge"><img src="${data.badge}"></div>
+        <div class="title">${data.title}</div>
+        <div class="description">${data.description}</div>
+        <div class="site"><a href='${url}'>${url}</a></div>
+        <div class="owner">${data.owner}</div>
       </div>
-    `;
+    `;    
   }
+
   tag.insertAdjacentHTML('afterbegin', `
-    <p>the ${ringName} webring includes ${sites.length} sites</p>
+    <p>the ${ringName} webring includes ${Object.keys(sites).length} sites</p>
       ${list}
     `);  
 }
 else { 
-  // red-onionring.js: if you've chosen to sort alphabetically, this sorts the sites
-  if(useSort) {
-    sites = sites.sort();
-  }
-
   list = "";
-  for (i = 0; i < sites.length; i++) {
-    list += `<li><a href='${sites[i]}'>${sites[i].replace(regex, "")}</a></li>`;
+  for (const [url, data] of Object.entries(sites)) {
+    const displayURL = new URL(data.title).hostname; 
+    list += `<li><a href='${url}'>${displayURL}</a></li>`;
   }
   
   tag.insertAdjacentHTML('afterbegin', `
-  <p>the ${ringName} webring includes ${sites.length} sites</p>
+  <p>the ${ringName} webring includes ${Object.keys(sites).length} sites</p>
   <ul>
     ${list}
   </ul>
