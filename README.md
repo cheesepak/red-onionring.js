@@ -25,8 +25,8 @@ red-onionring.js is an [onionring.js](https://allium.house/garden/onionring/) fo
 2. Optional: Create a page for the Webring, then include the following code on the page where you would like the Webring list. Do not forget to change the script src to the url you uploaded the files to:
 ```
 <div id='index'>
-    <script type="text/javascript" src="scriptURL/onionring-variables.js"></script>
-    <script type="text/javascript" src="scriptURL/onionring-index.js"></script>
+    <script type="text/javascript" src="scriptURL/red-onionring-variables.js"></script>
+    <script type="text/javascript" src="scriptURL/red-onionring-index.js"></script>
 </div>
 ```
 3. Edit `onionring-variables.js`:
@@ -39,12 +39,12 @@ red-onionring.js is an [onionring.js](https://allium.house/garden/onionring/) fo
 1. Paste the following code where you want the webring widget to display on your site. Make sure when handing this code to the webring members, the src is the full url to where the files are hosted.
 ```
 <div id='webringid'>
-    <script type="text/javascript" src="scriptURL/onionring-variables.js"></script>
-    <script type="text/javascript" src="scriptURL/onionring-widget.js"></script>
+    <script type="text/javascript" src="scriptURL/red-onionring-variables.js"></script>
+    <script type="text/javascript" src="scriptURL/red-onionring-widget.js"></script>
 </div>
 ```
 2. Paste the following script between `<head></head>` on the pages the widget lives. Like the previous step, the src must have the full url to where the files are hosted:
-```<link rel="stylesheet" href="scriptURL/onionring.css">```
+```<link rel="stylesheet" href="scriptURL/red-onionring.css">```
 
 ## [onionring.js](https://allium.house/garden/onionring/)
 > Original instructions on how to use onionring.js are on the [allium.house website](https://allium.house/garden/onionring/). allium.house was previously garlic.garden.
