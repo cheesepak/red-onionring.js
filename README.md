@@ -1,15 +1,14 @@
 # red-onionring.js
 red-onionring.js is an [onionring.js](https://allium.house/garden/onionring/) fork with additional features:
-- Customizable index widget that includes owner name, site title, url, description, and badge
+- Customizable index widget that includes three options:
+    - simple: unordered list of sites
+    - advanced: list of sites including title, description, owner, and badge
+    - badge: grid of badges (buttons, stamps, icons, etc)
 - Option to alphabetically sort the webring and index page list
 - Displaying the onionring widget on the index site shows separate text that can be modified
 - The index widget displays a sites counter (how many sites in the webring)
 
 ### To Do
-- Replace useAdvancedIndex with useIndexType: 
-    - simple: list of sites
-    - advanced: list of sites including title, description, owner, and badge
-    - badge: grid of badges (buttons, stamps, icons, etc)
 - Make a flag for sites counter so that it's optional
 - Separate alphabetical sorting for the ring widget and index
 - Separate text on index site without requiring the index site to be included in the ring
