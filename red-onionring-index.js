@@ -4,7 +4,7 @@
 
 // --- red-onionring.js is an onionring.js fork with additional features ------------------------------
 // --- https://github.com/cheesepak/red-onionring.js --------------------------------------------------
-// --- last updated 2026-08-05 ------------------------------------------------------------------------
+// --- last updated 2026-08-06 ------------------------------------------------------------------------
 
 // === ONIONRING-INDEX ===
 //this file builds the list of sites in the ring for displaying on your index page
@@ -26,7 +26,7 @@ if(useSort) {
   sites.sort(compare);
 }
 
-if(useAdvancedIndex) {
+if(useIndexType === "advanced") {
   list = "";
   for (const [url, data] of Object.entries(sites)) {
     //this is the code that displays the index widget - EDIT THIS if you want to change the structure
@@ -43,13 +43,24 @@ if(useAdvancedIndex) {
 
   tag.insertAdjacentHTML('afterbegin', `
     <p>the ${ringName} webring includes ${Object.keys(sites).length} sites</p>
-      ${list}
+    ${list}
     `);  
-}
-else { 
+} else if (useIndexType === "badge") {
   list = "";
   for (const [url, data] of Object.entries(sites)) {
-    const displayURL = new URL(data.title).hostname; 
+    const displayURL = new URL(url).hostname; 
+    list += `<a href='${url}'><img src="${data.badge}" class="badge"></a></li>`;
+  }
+  tag.insertAdjacentHTML('afterbegin', `
+    <p>the ${ringName} webring includes ${Object.keys(sites).length} sites</p>
+    <div class="badges">
+      ${list}
+    </div>
+  `);
+} else { 
+  list = "";
+  for (const [url, data] of Object.entries(sites)) {
+    const displayURL = new URL(url).hostname; 
     list += `<li><a href='${url}'>${displayURL}</a></li>`;
   }
   
@@ -60,3 +71,8 @@ else {
   </ul>
   `);
 }
+
+tag.insertAdjacentHTML('afterbegin', `
+  <p>the ${ringName} webring includes ${Object.keys(sites).length} sites</p>
+  ${list}
+`);  

@@ -4,7 +4,7 @@
 
 /* --- red-onionring.js is an onionring.js fork with additional features ------------------------------ //
 // --- https://github.com/cheesepak/red-onionring.js -------------------------------------------------- 
-// --- last updated 2026-08-05 ------------------------------------------------------------------------ */
+// --- last updated 2026-08-06 ------------------------------------------------------------------------ */
 
 /* === ONIONRING.CSS === */
 /* this file affects the style of the widget. remember to replace all instances of #webringid with whatever value you have for ringID in the onionring-widget.js file. make sure it still has the # at the front, though! probably easiest to use find+replace to do it */
@@ -40,21 +40,43 @@
 }
 
 #index {
+  /* badge currently sized for 88x31 buttons */
+  --badge-w: 88px;
+  --badge-h: 31px;
   padding: 5px 0;
+  display: flex;
+  align-items: center;  
 }
 
 #index .sites {
   padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+  max-width: 800px;
 }
 
-/* currently sized for 88x31 buttons */
+#index .badges {
+  display: grid;
+  grid-template-columns: repeat(8, var(--badge-w)); 
+  gap: var(--badge-gap); 
+}
+
 #index .sites .badge {
   background-color: #eeeeee;
-  width: 88px;
-  height: 31px;
+  width: var(--badge-w);
+  height: var(--badge-h);
   display: inline-block;
   vertical-align: middle;
   margin-bottom: 10px;
+}
+
+#index .badges img {
+  background-color: #eeeeee;
+  width: var(--badge-w);
+  height: var(--badge-h);
+  display: inline-block;
+  vertical-align: middle;
 }
 
 #index .sites .title{

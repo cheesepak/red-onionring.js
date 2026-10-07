@@ -4,7 +4,7 @@
 
 // --- red-onionring.js is an onionring.js fork with additional features ------------------------------
 // --- https://github.com/cheesepak/red-onionring.js --------------------------------------------------
-// --- last updated 2026-08-05 ------------------------------------------------------------------------
+// --- last updated 2026-08-06 ------------------------------------------------------------------------
 
 // === ONIONRING-WIDGET ===
 //this file contains the code which builds the widget shown on each page in the ring. ctrl+f 'EDIT THIS' if you're looking to change the actual html of the widget
