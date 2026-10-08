@@ -28,7 +28,7 @@ red-onionring.js is an [onionring.js](https://allium.house/garden/onionring/) fo
     <script type="text/javascript" src="scriptURL/red-onionring-index.js"></script>
 </div>
 ```
-3. Edit `onionring-variables.js`:
+3. Edit `red-onionring-variables.js`:
     - fill out the list of sites for each member: full url (including https), site title, site owner, and url to site badge (full url is required, anything else may optionally be an empty string: '')
     - `ringName` is the name of your webring and will show up as "part of the ringName webring"
     - `ringID` should be a uniquely identifiable variable to prevent conflict if someone is part of multiple webrings.
